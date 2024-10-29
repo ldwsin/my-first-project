@@ -83,13 +83,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setPassword(DigestUtils.md5DigestAsHex(PasswordConstant.DEFAULT_PASSWORD.getBytes()));
 
 
-        //设置时间和修改时间
-        employee.setCreateTime(LocalDateTime.now());
-        employee.setUpdateTime(LocalDateTime.now());
-
-        //设置当前创建id和用户id
-        employee.setCreateUser(BaseContext.getCurrentId());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+//        //设置时间和修改时间
+//        employee.setCreateTime(LocalDateTime.now());
+//        employee.setUpdateTime(LocalDateTime.now());
+//
+//        //设置当前创建id和用户id
+//        employee.setCreateUser(BaseContext.getCurrentId());
+//        employee.setUpdateUser(BaseContext.getCurrentId());
 
         employeeMapper.insert(employee);
     }
@@ -113,10 +113,11 @@ public class EmployeeServiceImpl implements EmployeeService {
        Employee employee=new  Employee();
        employee.setStatus(status);
        employee.setId(id);
-        employee.setUpdateTime(LocalDateTime.now());
+     //   employee.setUpdateTime(LocalDateTime.now());
         employeeMapper.update(employee);
     }
 
+//    byid查询
     @Override
     public Employee GetById(long id) {
         Employee employee=employeeMapper.GetById(id);
@@ -124,12 +125,13 @@ public class EmployeeServiceImpl implements EmployeeService {
         return employee;
     }
 
+    //修改员工信息
     @Override
     public void update(EmployeeDTO employeeDTO) {
         Employee employee=new Employee();
         BeanUtils.copyProperties(employeeDTO,employee);
-        employee.setUpdateTime(LocalDateTime.now());
-        employee.setUpdateUser(BaseContext.getCurrentId());
+//        employee.setUpdateTime(LocalDateTime.now());
+//        employee.setUpdateUser(BaseContext.getCurrentId());
         employeeMapper.update(employee);
     }
 
