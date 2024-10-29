@@ -6,6 +6,7 @@ import com.sky.entity.Employee;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Mapper
 
@@ -24,12 +25,12 @@ public interface EmployeeMapper {
     "(#{name},#{username},#{password},#{phone},#{sex},#{idNumber},#{createTime},#{updateTime},#{createUser},#{updateUser},#{status})")
     void insert(Employee employee);
 
+    //分页查询
     Page<Employee> pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
 
+    //修改属性
+    void update(Employee employee);
 
-//    //分页查询
-//    Page<Employee> pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
-//
-
-
+    @Select("select * from employee where id=#{id}")
+    Employee GetById(Long id);
 }
